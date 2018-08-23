@@ -4,7 +4,7 @@ const uuid = require('uuid/v4');
 const Verify = require('../models/verifycode');
 const jwt  = require('jsonwebtoken');
 async function register(req,res) {
-  let userCount= await Users.count({phone:req.body.phone})
+  let userCount= await Users.count({email:req.body.email})
   if(userCount){
       return res.status(400).json({message:'User with same email id already exists'});
   }

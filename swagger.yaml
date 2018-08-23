@@ -17,8 +17,8 @@ paths:
       tags:
       - Authentication
       summary: "Add/Update phone number"
-      description: "Add or update phone number associated with user account"
-      operationId: "addPhone"
+      description: "Account Registration"
+      operationId: "register"
       consumes:
       - "application/json"
       produces:
@@ -26,7 +26,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: New phone number or OTP
+        description: Registration
         required: true
         schema:
           $ref: "#/definitions/Register"
@@ -34,6 +34,50 @@ paths:
         200:
           description: "Response on successful request"
       x-swagger-router-controller: "User"
+  /auth/login:
+    post:
+      tags:
+      - Authentication
+      summary: "User Login"
+      description: "User Login"
+      operationId: "Login"
+      consumes:
+      - "application/json"
+      produces:
+      - "applicaion/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: User Login
+        required: true
+        schema:
+          $ref: "#/definitions/Login"
+      responses:
+        200:
+          description: "Response on successful request"
+      x-swagger-router-controller: "User"
+  /auth/verify-email:
+    post:
+      tags:
+      - Authentication
+      summary: "Email Verification"
+      description: "Email Verification"
+      operationId: "Email Varification"
+      consumes:
+      - "application/json"
+      produces:
+      - "applicaion/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: Email Verification
+        required: true
+        schema:
+          $ref: "#/definitions/EmailVerify"
+      responses:
+        200:
+          description: "Response on successful request"
+      x-swagger-router-controller: "User"    
 
 
 definitions:
@@ -60,5 +104,27 @@ definitions:
         description: |
           Password
       phone:
-        type: string
-        description: Contact number      
+        type: number
+        description: Contact number
+  Login:
+    type: object
+    required:
+    - "email"
+    - "password"
+    properties:
+      email:
+        type: "string"
+        description: Email
+      password:
+        type: "string"
+        description: |
+          Password
+  EmailVerify:
+    type: object
+    required:
+    - "code"
+    properties:
+      code:
+        type: "string"
+        description: Verification code
+      
