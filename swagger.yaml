@@ -1,0 +1,64 @@
+---
+swagger: "2.0"
+info:
+  description: |
+    
+  version: "1.0.0"
+  title: "Authentication"
+  termsOfService: ""
+basePath: "/api/v1"
+tags:
+- name: Authentication
+schemes:
+- "http"
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Authentication
+      summary: "Add/Update phone number"
+      description: "Add or update phone number associated with user account"
+      operationId: "addPhone"
+      consumes:
+      - "application/json"
+      produces:
+      - "applicaion/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: New phone number or OTP
+        required: true
+        schema:
+          $ref: "#/definitions/Register"
+      responses:
+        200:
+          description: "Response on successful request"
+      x-swagger-router-controller: "User"
+
+
+definitions:
+  Register:
+    type: object
+    required:
+    - "email"
+    - "firstname"
+    - "lastname"
+    - "password"
+    - "phone"
+    properties:
+      firstname:
+        type: string
+        description: First name
+      lastname:
+        type: string
+        description: Last name
+      email:
+        type: "string"
+        description: Email
+      password:
+        type: "string"
+        description: |
+          Password
+      phone:
+        type: string
+        description: Contact number      
