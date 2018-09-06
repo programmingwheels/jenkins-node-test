@@ -4,12 +4,13 @@ const userSchema = new mongoose.Schema({
   firstname:{type:String,required:true},
   lastname :{type:String,required:true},
   email :{type:String,required:true},
-  phone :{type:String,required:true},
-  password:{type:String,required:true},
+  phone :{type:String},
+  password:{type:String},
   verifyStatus:{type:Boolean,default:false},
   activeStatus:{type:Boolean,default:false},
   gender:{type:String},
-  topics:[mongoose.Schema.ObjectId]
+  topics:[mongoose.Schema.ObjectId],
+  facebook_id:String
 },{timestamps:true})
 
 userSchema.methods.HashPassword = (password)=>{

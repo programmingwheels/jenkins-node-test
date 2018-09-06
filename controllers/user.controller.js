@@ -56,8 +56,29 @@ async function login (req,res){
    const token = jwt.sign(user.id, process.env.JWT_SECRET);
    return res.json({token:token});
 }
+async function generateJWT (req, res, next){
+  const fb = req.FBprofileDetails
+ try{
+    const user = await Users.findOne({"facebook_id":fb.id});
+  if(!user){
+       const u=new Users({
+          email:fb.email,
+          firstname:fb.first_name,
+          lastname:fb.name
+       })
+     const us= await u.save();
+     return res.json({token:jwt.sign(us.id, process.env.JWT_SECRET)});
+  }
+   return res.json({token:jwt.sign(user.id, process.env.JWT_SECRET)});
+ }
+ catch(error){
+     next(error);
+ }
+  
+}
 module.exports={
     register,
     verifyEmail,
-    login
+    login,
+    generateJWT
 }
