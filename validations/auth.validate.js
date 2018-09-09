@@ -24,5 +24,16 @@ module.exports= {
       email: Joi.string().email().required(),
       password: Joi.string().required()
     }
+  },
+  forgotPassword: {
+    body: {
+      email: Joi.string().email().required()
+    }
+  },
+  changeForgotPassword: {
+    body: {
+      code: Joi.string().required(),
+      password:Joi.string().required()
+    }
   }
 };

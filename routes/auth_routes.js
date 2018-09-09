@@ -10,5 +10,7 @@ route.post('/register',expressValidation(authValidate.register), userController.
 route.post('/verify-email',expressValidation(authValidate.verifyEmail),userController.verifyEmail);
 route.post('/login',expressValidation(authValidate.login), userController.login);
 route.post('/facebook',middleware.validateFacebookToken,userController.generateJWT);
+route.post('/forgot-password',expressValidation(authValidate.forgotPassword),userController.forgotPassword);
+route.post('/change-forgot-password',expressValidation(authValidate.changeForgotPassword),userController.changeForgotPassword);
 
 module.exports=route;

@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema({
   activeStatus:{type:Boolean,default:false},
   gender:{type:String},
   topics:[mongoose.Schema.ObjectId],
-  facebook_id:String
+  facebook_id:String,
+  about:String,
+  location:String,
 },{timestamps:true})
 
 userSchema.methods.HashPassword = (password)=>{
