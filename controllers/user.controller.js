@@ -128,6 +128,11 @@ async function changePassword (req, res, next) {
     await user.save();
     return res.json({message:true});
 }
+async function getProfile(req, res, next) {
+    let user= await Users.findOne({_id:req.userId}).select('-password');
+    delete user.password;
+    return res.json(user);
+}
 module.exports={
     register,
     verifyEmail,
@@ -136,5 +141,6 @@ module.exports={
     forgotPassword,
     changeForgotPassword,
     updateProfile,
-    changePassword
+    changePassword,
+    getProfile
 }

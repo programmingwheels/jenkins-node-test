@@ -8,5 +8,6 @@ route.use(middleware.validateJWT);
 
 route.post('/update-profile',expressValidation(profileValidate.updateProfile), userController.updateProfile);
 route.post('/change-password',expressValidation(profileValidate.changePassword),userController.changePassword);
+route.get('/me',userController.getProfile);
 
 module.exports=route;
