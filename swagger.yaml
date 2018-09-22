@@ -123,20 +123,27 @@ paths:
           description: "Response on successful request"
       x-swagger-router-controller: "User"
   /auth/facebook:
-    get:
-      summary: Facebook access token validation
-      description: Facebook access token validation
+    post:
       tags:
-      - "Authentication"
+      - Profile
+      summary: "Facebook access token validation"
+      description: "Facebook access token validation"
+      operationId: "Change Password"
+      consumes:
+      - "application/json"
+      produces:
+      - "applicaion/json"
       parameters:
-        - in: query
-          name: access_token
-          type: string
-          required: false
-          description: Facebook Access Token
+      - in: "body"
+        name: "body"
+        description: Facebook Access
+        required: true
+        schema:
+          $ref: "#/definitions/FBTokenSchema"
       responses:
         200:
-          description: OK
+          description: "Response on successful request"
+      x-swagger-router-controller: "User"      
   /profile/change-password:
     post:
       tags:
@@ -316,5 +323,13 @@ definitions:
         description: Contact number
       gender:
         type: string
-        description: Gender                            
+        description: Gender
+  FBTokenSchema:
+    type: object
+    required:
+    - "access_token"
+    properties:
+      access_token:
+        type: "string"
+        description: Access Token
       
