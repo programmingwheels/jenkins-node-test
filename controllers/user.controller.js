@@ -9,8 +9,7 @@ async function register(req,res) {
       return res.status(400).json({message:'User with same email id already exists'});
   }
   const user = new Users({
-      firstname:req.body.firstname,
-      lastname: req.body.lastname,
+      name: req.body.name,
       email:req.body.email,
       phone:req.body.phone
   })

@@ -6,9 +6,8 @@ module.exports= {
     body: {
       email: Joi.string().email().required(),
       password: Joi.string().required().min(6).max(10),
-      firstname:Joi.string().required(),
-      lastname:Joi.string().required(),
-      phone:Joi.string().required(),
+      name:Joi.string().required(),
+      phone:Joi.string(),
     }
   },
   verifyEmail: {

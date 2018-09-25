@@ -221,17 +221,13 @@ definitions:
     type: object
     required:
     - "email"
-    - "firstname"
-    - "lastname"
+    - "name"
     - "password"
     - "phone"
     properties:
-      firstname:
+      name:
         type: string
-        description: First name
-      lastname:
-        type: string
-        description: Last name
+        description: Name
       email:
         type: "string"
         description: Email
