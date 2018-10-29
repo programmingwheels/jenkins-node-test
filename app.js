@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const loadSwaggerSpec = require('./swagger');
 const authRoute = require('./routes/auth_routes');
 const profileRoute = require('./routes/profile');
+const resourceRoute = require('./routes/resources');
 const passport = require('passport')
 Promise = require('bluebird');
 mongoose.Promise = Promise;
@@ -28,6 +29,7 @@ app.use(passport.initialize());
 app.use(cors());
 app.use('/api/v1/auth',authRoute);
 app.use('/api/v1/profile',profileRoute);
+app.use('/api/v1/resource',resourceRoute);
 loadSwaggerSpec(app);
 app.use(function(err, req, res, next){
     // default error handler. This will catch all the express-validation error message and pass it to the response.

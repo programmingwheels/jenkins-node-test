@@ -22,7 +22,9 @@ async function register(req,res) {
   })
   await ver.save()
   await emailService.sendMail(req.body.email,"Email verification",code)
-  return res.json({success:true});
+  const token = jwt.sign(user.id, process.env.JWT_SECRET);
+  return res.json({token:token});
+  //return res.json({success:true});
 }
 
 async function verifyEmail(req, res){
